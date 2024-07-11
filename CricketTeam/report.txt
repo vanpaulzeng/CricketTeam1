@@ -1,0 +1,8 @@
+A file named report.doc or report.docx (in Microsoft Word format), report.txt (an ordinary text file), or report.pdf (in Adobe Acrobat PDF format) that contains:
+CS 32 – Summer 2023 E. Ambrosio
+o A description of the design of your implementation and why you chose it. (A couple of sentences will probably suffice, perhaps with a picture of a typical List and an empty List. Is your list circular? Does it have a dummy node? What's in your nodes?)
+o A brief description of notable obstacles you overcame.
+o Pseudocode for non-trivial algorithms (e.g., CricketTeam::releaseCricketer and mergeCricketers)
+o A list of test cases that would thoroughly test the functions. Be sure to indicate the purpose of the tests. For example, here's the beginning of a presentation in the form of code:
+The tests were performed on a map from strings to integers:
+
