@@ -16,8 +16,18 @@ CricketTeam::CricketTeam() {
 }
 
 bool CricketTeam::noTeam(){
-    
-    return true;
+    if (head == nullptr) return true;
+    else return false;
+}
+
+int CricketTeam::cricketerCount(){
+    Node *p;
+    int numOfNodes = 0;
+    p = head;
+    while (p != nullptr){
+        numOfNodes++;
+    }
+    return numOfNodes;
 }
 
 

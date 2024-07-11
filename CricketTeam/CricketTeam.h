@@ -22,7 +22,7 @@ struct Node {
 class CricketTeam
 {
 private:
-    CricketType *head = nullptr, *tail = nullptr;
+    Node *head = nullptr, *tail = nullptr;
     
     
 public:
@@ -30,7 +30,7 @@ CricketTeam(); // Create an empty CricketTeam list
     
 bool noTeam(); // Return true if the CricketTeam list is empty, otherwise false.
 
-int cricketerCount() const; // Return the number of matches on the CricketTeam list.
+int cricketerCount(); // Return the number of matches on the CricketTeam list.
 bool addCricketer(const std::string& firstName, const std::string&
 lastName, const CricketType& value);
 
