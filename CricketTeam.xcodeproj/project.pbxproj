@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		847D71BF2C3F826B0027F6FB /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 847D71BE2C3F826B0027F6FB /* main.cpp */; };
-		847D71C72C3F82DF0027F6FB /* CricketTeam.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 847D71C62C3F82DF0027F6FB /* CricketTeam.cpp */; };
+		847D71CA2C3FC25C0027F6FB /* CricketTeam.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 847D71C62C3F82DF0027F6FB /* CricketTeam.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -126,7 +126,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				847D71C72C3F82DF0027F6FB /* CricketTeam.cpp in Sources */,
+				847D71CA2C3FC25C0027F6FB /* CricketTeam.cpp in Sources */,
 				847D71BF2C3F826B0027F6FB /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

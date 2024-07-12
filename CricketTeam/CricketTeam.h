@@ -12,9 +12,9 @@
 typedef std::string CricketType; // This can change to other types such as double and int, not just string
 
 struct Node {
-    CricketType firstName;
-    CricketType lastName;
-    int number;
+    std::string firstName;
+    std::string lastName;
+    CricketType number;
     Node *next;
 };
 
@@ -31,9 +31,8 @@ CricketTeam(); // Create an empty CricketTeam list
 bool noTeam(); // Return true if the CricketTeam list is empty, otherwise false.
 
 int cricketerCount(); // Return the number of matches on the CricketTeam list.
-bool addCricketer(const std::string& firstName, const std::string&
-lastName, const CricketType& value);
-
+    
+bool addCricketer(std::string firstName, std::string lastName, int value);
 // If the full name (both the first and last name) is not equal
 // to any full name currently in the list then add it and return
 // true. Elements should be added according to their last name.
@@ -41,7 +40,8 @@ lastName, const CricketType& value);
 // their first names. Otherwise, make no change to the list and
 // return false (indicating that the name is already in the
 // list).
-bool substituteCricketer(const std::string& firstName, const std::string& lastName, const CricketType & value);
+
+bool substituteCricketer(const std::string &firstName, const std::string &lastName, const CricketType & value);
 // If the full name is equal to a full name currently in the
 // list, then make that full name no longer map to the value it
 // currently maps to, but instead map to the value of the third
@@ -75,7 +75,12 @@ bool checkTeamForCricketer(int i, std::string& firstName, std::string& lastName,
 // about this function.)
 void tradeCricketTeams(CricketTeam& other);
 // Exchange the contents of this list with the other one.
+    void printCricket();
+    // print list
+
 };
+
+
 
 
 
