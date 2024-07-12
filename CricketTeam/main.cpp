@@ -15,17 +15,21 @@ int main(int argc, const char * argv[]) {
 
 
     CricketTeam rajasthanRoyals;
+    rajasthanRoyals.addCricketer ("Yuzvendra", "Chahal", 3);
     rajasthanRoyals.addCricketer ("Sanju", "Samson", 11);
+    //rajasthanRoyals.addCricketer ("Yuzvendra", "Chahal", 3);
     rajasthanRoyals.addCricketer ("Jos", "Buttler", 63);
     rajasthanRoyals.addCricketer ("Yashavi", "Jaiswal", 19);
     rajasthanRoyals.addCricketer ("Shimron", "Hetmeyer", 189);
     rajasthanRoyals.addCricketer ("Trent", "Boult", 18);
     rajasthanRoyals.addCricketer ("Ravichandran", "Ashwin", 99);
-    rajasthanRoyals.addCricketer ("Yuzvendra", "Chahal", 3);
+    //rajasthanRoyals.addCricketer ("Yuzvendra", "Chahal", 3);
     
     rajasthanRoyals.printCricket();
     
     cout << rajasthanRoyals.cricketerCount();
+    
+    return 0;
     
     /*
     for (int n = 0; n < rajasthanRoyals.cricketerCount(); n++)

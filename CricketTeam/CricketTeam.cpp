@@ -9,6 +9,7 @@
 #include <string>
 #include <iostream>
 #include "CricketTeam.h"
+
 using namespace std;
 
 CricketTeam::CricketTeam() {
@@ -27,6 +28,7 @@ int CricketTeam::cricketerCount(){
     p = head;
     while (p != nullptr){
         numOfNodes++;
+        p = p->next;
     }
     return numOfNodes;
 }
@@ -35,7 +37,8 @@ int CricketTeam::cricketerCount(){
 
 bool CricketTeam::addCricketer(string firstName, string lastName, int value){
     Node *p, *np;
-    
+    int compareLast=0, compareFirst=0;
+
     p = head;
     if (p == nullptr){
         np = new Node;
@@ -50,29 +53,45 @@ bool CricketTeam::addCricketer(string firstName, string lastName, int value){
     }
 
     while (p != nullptr){
-        if (p->lastName == lastName and p->firstName == firstName) {
-            cout << " The name: " << firstName <<" "<<lastName <<" already in the list!\n";
-            return false;
-        }
-        if (p->lastName == lastName and firstName < p->firstName){
-            p = p->next;
-        }
-        else {
+        compareLast = strcmp(p->lastName.c_str(), lastName.c_str());
+        compareFirst = strcmp(p->firstName.c_str(), firstName.c_str());
+        if (compareLast > 0) {
             
+            //lastname is ahead than existing list, need add node head
             np = new Node;
             np->firstName = firstName;
             np->lastName = lastName;
             np->number = value;
-            np->next = p->next;
-            p->next = np;
+            np->next = p;
+            head = np;
             return true;
-            
-            
-        }
-    }
-    cout <<" List is empty";
-    return false;
 
+        }
+        
+        if(compareLast == 0 and compareFirst == 0){
+            cout << " The name: " << firstName <<" "<<lastName <<" already in the list!\n";
+            return false;
+        }
+    
+        if(compareLast == 0 and compareFirst < 0){
+                p = p->next;
+                continue;
+            }
+            else {
+                np = new Node;
+                np->firstName = firstName;
+                np->lastName = lastName;
+                np->number = value;
+                np->next = p->next;
+                p->next = np;
+                tail = np;
+                return true;
+            }
+        
+        
+    
+    }
+    return false;
 }
 
 
@@ -80,7 +99,8 @@ void CricketTeam::printCricket(){
     Node *p;
     p=head;
     while (p != nullptr){
-        cout << p->firstName <<" \n";
+        cout << p->lastName <<" "<< p->firstName <<" \n";
+        p = p->next;
     }
 }
 
