@@ -40,9 +40,9 @@ bool CricketTeam::addCricketer(string firstName, string lastName, int value){
     int compareLast=0, compareFirst=0;
 
     p = head;
-    temp = p;
+    temp = p; //Save previous pointer as temp
     
-    if (p == nullptr){  //empty, add in
+    if (p == nullptr){  //empty, add in as head and tail
         np = new Node;
         np->firstName = firstName;
         np->lastName = lastName;
@@ -57,9 +57,9 @@ bool CricketTeam::addCricketer(string firstName, string lastName, int value){
 
     
     while (p != nullptr){
-         cout << "we had \n";
-         this->printCricket();
-         cout << lastName<< "   input   " << firstName <<"\n";
+//         cout << "we had \n";
+//         this->printCricket();
+//         cout << lastName<< "   input   " << firstName <<"\n";
         
         
         
@@ -68,9 +68,9 @@ bool CricketTeam::addCricketer(string firstName, string lastName, int value){
         compareFirst = strcmp(p->firstName.c_str(), firstName.c_str());
         
         if (compareLast < 0){ //Move ahead by lastname
-            if (p != tail){
+            if (p != tail){  //loop until tail
                 temp = p;  //remember the previous node to temp for every p move ahead
-                if (p != tail) p = p->next;
+                if (p != tail) p = p->next;  //make sure next pointer move safe, if p is tail, do not move
                 continue;
             }
         }
@@ -82,11 +82,11 @@ bool CricketTeam::addCricketer(string firstName, string lastName, int value){
         
         if(compareLast == 0 and compareFirst < 0){ // move ahead by firstname
             temp = p;
-            if (p != tail) p = p->next;
+            if (p != tail) p = p->next;  //make sure next pointer move safe, if p is tail, do not move
         }
         
         else if(compareLast == 0 and compareFirst > 0){ //
-            if (p==head){ //add as head
+            if (p==head){ //head will use different add method, add np as new head
                 np = new Node;
                 np->firstName = firstName;
                 np->lastName = lastName;
@@ -122,10 +122,10 @@ bool CricketTeam::addCricketer(string firstName, string lastName, int value){
                 np->lastName = lastName;
                 np->number = value;
                 np->next = p;
-                head = np;
+                head = np;  //update new head as np
 
             }
-            else{
+            else{  //add np before p
                 np = new Node;
                 np->firstName = firstName;
                 np->lastName = lastName;
@@ -139,8 +139,8 @@ bool CricketTeam::addCricketer(string firstName, string lastName, int value){
         }
         
         
-        if (compareLast <0){  //add after p
-            if (p == tail){
+        if (compareLast <0){  //lastname just pass p order, add np after p
+            if (p == tail){  //check tail and make new tail as np
                 np = new Node;
                 np->firstName = firstName;
                 np->lastName = lastName;
@@ -153,18 +153,15 @@ bool CricketTeam::addCricketer(string firstName, string lastName, int value){
             }
             
         }
-            
-            else{
-                np = new Node;
-                np->firstName = firstName;
-                np->lastName = lastName;
-                np->number = value;
-                np->next = p;
-                temp->next = np;
-                return true;
-
-
-            }
+        else{  //just reach lastname p order, add np before p
+            np = new Node;
+            np->firstName = firstName;
+            np->lastName = lastName;
+            np->number = value;
+            np->next = p;
+            temp->next = np;
+            return true;
+        }
         
     }
 
