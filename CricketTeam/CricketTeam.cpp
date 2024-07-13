@@ -39,9 +39,8 @@ bool CricketTeam::addCricketer(string firstName, string lastName, int value){
     Node *p,*temp=nullptr, *np;
     int compareLast=0, compareFirst=0;
 
-
-    
     p = head;
+    temp = p;
     
     if (p == nullptr){  //empty, add in
         np = new Node;
@@ -56,22 +55,22 @@ bool CricketTeam::addCricketer(string firstName, string lastName, int value){
 
     }
 
- 
+    
     while (p != nullptr){
-       // cout << "we had \n";
-       // this->printCricket();
-       // cout << lastName<< "   input   " << firstName <<"\n";
-
+         cout << "we had \n";
+         this->printCricket();
+         cout << lastName<< "   input   " << firstName <<"\n";
         
-       
+        
+        
         // if p->lastname > lastname, then comparelast will > 0, add node in front of p
         compareLast = strcmp(p->lastName.c_str(), lastName.c_str());
         compareFirst = strcmp(p->firstName.c_str(), firstName.c_str());
         
-        if (compareLast < 0){
+        if (compareLast < 0){ //Move ahead by lastname
             if (p != tail){
                 temp = p;  //remember the previous node to temp for every p move ahead
-                p = p->next;
+                if (p != tail) p = p->next;
                 continue;
             }
         }
@@ -81,32 +80,66 @@ bool CricketTeam::addCricketer(string firstName, string lastName, int value){
             return false;
         }
         
-        if(compareLast == 0 ){ //start compare first
-            if  (compareFirst < 0 ){
-                if (p != tail) {
-                    temp = p;  //remember the previous node to temp for every p move ahead
-                    p = p->next;
-                    continue;
-                }
+        if(compareLast == 0 and compareFirst < 0){ // move ahead by firstname
+            temp = p;
+            if (p != tail) p = p->next;
+        }
+        
+        else if(compareLast == 0 and compareFirst > 0){ //
+            if (p==head){ //add as head
+                np = new Node;
+                np->firstName = firstName;
+                np->lastName = lastName;
+                np->number = value;
+                np->next = p;
+                head = np;
+                
+                return true;
+
             }
+            else{  // add ahead p
+                np = new Node;
+                np->firstName = firstName;
+                np->lastName = lastName;
+                np->number = value;
+                np->next = p;
+                temp->next = np;
+                
+                return true;
+
+
+            }
+            
+        
         }
         
         //reach tail or firstname is just before p, add node ahead p
         
-        if (compareLast >=0){  //add ahead
-            
-            np = new Node;
-            np->firstName = firstName;
-            np->lastName = lastName;
-            np->number = value;
-            np->next = p;
-            temp->next = np;
+        if (compareLast >=0 and compareFirst >= 0){  //add before here
+            if (p==head){ // add as head
+                np = new Node;
+                np->firstName = firstName;
+                np->lastName = lastName;
+                np->number = value;
+                np->next = p;
+                head = np;
 
-            
+            }
+            else{
+                np = new Node;
+                np->firstName = firstName;
+                np->lastName = lastName;
+                np->number = value;
+                np->next = p;
+                temp->next = np;
+
+            }
             return true;
             
         }
-        else{  //add after p
+        
+        
+        if (compareLast <0){  //add after p
             if (p == tail){
                 np = new Node;
                 np->firstName = firstName;
@@ -118,9 +151,23 @@ bool CricketTeam::addCricketer(string firstName, string lastName, int value){
                 
                 return true;
             }
-
+            
         }
+            
+            else{
+                np = new Node;
+                np->firstName = firstName;
+                np->lastName = lastName;
+                np->number = value;
+                np->next = p;
+                temp->next = np;
+                return true;
+
+
+            }
+        
     }
+
     return false;
 }
 

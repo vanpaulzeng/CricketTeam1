@@ -19,8 +19,10 @@ int main(int argc, const char * argv[]) {
     
 
     rajasthanRoyals.addCricketer ("Sanju", "Samson", 11);
-    //rajasthanRoyals.addCricketer ("Qavichandran", "Ashwin", 99);
+    rajasthanRoyals.addCricketer ("Qavichandran", "Arhwin", 99);
 
+    rajasthanRoyals.addCricketer ("Pavichandran", "Bvhwin", 99);
+    
 
 
     rajasthanRoyals.addCricketer ("Jos", "Buttler", 63);
