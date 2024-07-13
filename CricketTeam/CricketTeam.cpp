@@ -36,11 +36,14 @@ int CricketTeam::cricketerCount(){
 
 
 bool CricketTeam::addCricketer(string firstName, string lastName, int value){
-    Node *p, *np;
+    Node *p,*temp=nullptr, *np;
     int compareLast=0, compareFirst=0;
 
+
+    
     p = head;
-    if (p == nullptr){
+    
+    if (p == nullptr){  //empty, add in
         np = new Node;
         np->firstName = firstName;
         np->lastName = lastName;
@@ -48,48 +51,75 @@ bool CricketTeam::addCricketer(string firstName, string lastName, int value){
         np->next = nullptr;
         head = np;
         tail = np;
+
         return true;
 
     }
 
+ 
     while (p != nullptr){
+       // cout << "we had \n";
+       // this->printCricket();
+       // cout << lastName<< "   input   " << firstName <<"\n";
+
+        
+       
+        // if p->lastname > lastname, then comparelast will > 0, add node in front of p
         compareLast = strcmp(p->lastName.c_str(), lastName.c_str());
         compareFirst = strcmp(p->firstName.c_str(), firstName.c_str());
-        if (compareLast > 0) {
-            
-            //lastname is ahead than existing list, need add node head
-            np = new Node;
-            np->firstName = firstName;
-            np->lastName = lastName;
-            np->number = value;
-            np->next = p;
-            head = np;
-            return true;
-
+        
+        if (compareLast < 0){
+            if (p != tail){
+                temp = p;  //remember the previous node to temp for every p move ahead
+                p = p->next;
+                continue;
+            }
         }
         
         if(compareLast == 0 and compareFirst == 0){
             cout << " The name: " << firstName <<" "<<lastName <<" already in the list!\n";
             return false;
         }
-    
-        if(compareLast == 0 and compareFirst < 0){
-                p = p->next;
-                continue;
+        
+        if(compareLast == 0 ){ //start compare first
+            if  (compareFirst < 0 ){
+                if (p != tail) {
+                    temp = p;  //remember the previous node to temp for every p move ahead
+                    p = p->next;
+                    continue;
+                }
             }
-            else {
+        }
+        
+        //reach tail or firstname is just before p, add node ahead p
+        
+        if (compareLast >=0){  //add ahead
+            
+            np = new Node;
+            np->firstName = firstName;
+            np->lastName = lastName;
+            np->number = value;
+            np->next = p;
+            temp->next = np;
+
+            
+            return true;
+            
+        }
+        else{  //add after p
+            if (p == tail){
                 np = new Node;
                 np->firstName = firstName;
                 np->lastName = lastName;
                 np->number = value;
-                np->next = p->next;
+                np->next = nullptr;
                 p->next = np;
                 tail = np;
+                
                 return true;
             }
-        
-        
-    
+
+        }
     }
     return false;
 }
