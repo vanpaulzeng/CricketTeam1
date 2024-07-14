@@ -9,7 +9,7 @@
 #define CricketTeam_h
 
 
-typedef std::string CricketType; // This can change to other types such as double and int, not just string
+typedef std::int32_t CricketType; // This can change to other types such as double and int, not just string
 
 struct Node {
     std::string firstName;
@@ -32,7 +32,7 @@ bool noTeam(); // Return true if the CricketTeam list is empty, otherwise false.
 
 int cricketerCount(); // Return the number of matches on the CricketTeam list.
     
-bool addCricketer(std::string firstName, std::string lastName, int value);
+bool addCricketer(std::string firstName, std::string lastName, CricketType value);
 // If the full name (both the first and last name) is not equal
 // to any full name currently in the list then add it and return
 // true. Elements should be added according to their last name.
