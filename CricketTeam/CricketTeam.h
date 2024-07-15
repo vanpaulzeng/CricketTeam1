@@ -16,6 +16,7 @@ struct Node {
     std::string lastName;
     CricketType number;
     Node *next;
+    Node *prev;
 };
 
 
@@ -26,7 +27,18 @@ private:
     
     
 public:
-CricketTeam(); // Create an empty CricketTeam list
+CricketTeam(); // Create an empty CricketTeam list, constructor
+  
+//copy constructor
+CricketTeam(const CricketTeam& rhs);
+
+//destructor
+~CricketTeam();
+    
+// assignment operator
+const CricketTeam& operator=(const CricketTeam& rhs);
+
+    
     
 bool noTeam(); // Return true if the CricketTeam list is empty, otherwise false.
 
