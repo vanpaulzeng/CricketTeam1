@@ -28,6 +28,7 @@ int CricketTeam::cricketerCount(){
     p = head;
     while (p != nullptr){
         numOfNodes++;
+        //cout << numOfNodes;
         p = p->next;
     }
     return numOfNodes;
@@ -63,9 +64,9 @@ bool CricketTeam::addCricketer(string firstName, string lastName, CricketType va
 
     
     while (p != nullptr){
-//         cout << "we had \n";
-//         this->printCricket();
-//         cout << lastName<< "   input   " << firstName <<"\n";
+         //cout << "we had \n";
+         //this->printCricket();
+         //cout << lastName<< "   input   " << firstName <<"\n";
         
         
         
@@ -103,7 +104,7 @@ bool CricketTeam::addCricketer(string firstName, string lastName, CricketType va
                 return true;
 
             }
-            else{  // add ahead p
+            else{  // add ahead p, no need to update tail
                 np = new Node;
                 np->firstName = firstName;
                 np->lastName = lastName;
@@ -160,13 +161,27 @@ bool CricketTeam::addCricketer(string firstName, string lastName, CricketType va
             
         }
         else{  //just reach lastname p order, add np before p
-            np = new Node;
-            np->firstName = firstName;
-            np->lastName = lastName;
-            np->number = value;
-            np->next = p;
-            temp->next = np;
-            return true;
+            if (p == head){
+                np = new Node;
+                np->firstName = firstName;
+                np->lastName = lastName;
+                np->number = value;
+                np->next = p;
+               // temp->next = np;
+                head = np; //need to update head now
+                return true;
+
+            }
+            else{
+                np = new Node;
+                np->firstName = firstName;
+                np->lastName = lastName;
+                np->number = value;
+                np->next = p;
+                temp->next = np;
+                return true;
+            }
+            
         }
         
     }
@@ -309,9 +324,9 @@ bool CricketTeam::checkTeamForCricketer(int i, std::string& firstName, std::stri
     p=head;
     while (p != nullptr){
         if ( i == nodeSeq){
-            p->firstName = firstName;
-            p->lastName = lastName;
-            p->number = value;
+            firstName = p->firstName;
+            lastName = p->lastName;
+            value = p->number;
         }
         nodeSeq ++;
         

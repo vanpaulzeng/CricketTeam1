@@ -22,7 +22,7 @@ struct Node {
 class CricketTeam
 {
 private:
-    Node *head = nullptr, *tail = nullptr;
+    Node *head , *tail;
     
     
 public:
