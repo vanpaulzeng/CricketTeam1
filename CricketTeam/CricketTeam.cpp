@@ -12,10 +12,40 @@
 
 using namespace std;
 
+//constructor
 CricketTeam::CricketTeam() {
     head = nullptr;
     tail = nullptr;
 }
+
+
+
+//copy constructor
+CricketTeam::CricketTeam(const CricketTeam & rhs) {
+    Node *p, *prev, *np, *nprev;
+    p = rhs.head;
+    np = new Node;
+
+    
+    while ( p != nullptr){
+        if (p == rhs.head){
+            head = np;
+        }
+        np->firstName = p->firstName;
+        np->lastName = p->lastName;
+        np->number = p->number;
+        np->next = p->next;
+        np->prev = p->prev;
+        np = new Node;
+        p = p-> next;
+    }
+}
+
+//denstructor
+CricketTeam::~CricketTeam() {
+    //do nothing;
+}
+
 
 bool CricketTeam::noTeam(){
     if (head == nullptr) return true;
@@ -194,7 +224,7 @@ void CricketTeam::printCricket(){
     Node *p;
     p=head;
     while (p != nullptr){
-        cout << p->lastName<<" "<< p->firstName << "  "<<p->number <<"  \n";
+        cout << p->lastName<<"aaa "<< p->firstName << "  "<<p->number <<"  \n";
         p = p->next;
     }
 }

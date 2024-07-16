@@ -42,7 +42,7 @@ int main(int argc, const char * argv[]) {
 
 */
     
-/* test 1 passed
+/*/ test 1 passed
     CricketTeam rajasthanRoyals;
     rajasthanRoyals.addCricketer ("Sanju", "Samson", 11);
     rajasthanRoyals.addCricketer ("Jos", "Buttler", 63);
@@ -63,10 +63,10 @@ int main(int argc, const char * argv[]) {
     rajasthanRoyals.checkTeamForCricketer (n, first, last, val);
     cout << first << " " << last << " " << val << endl;
     }
-
 */
     
-/* test 2 passed
+    
+//* test 2 passed
     CricketTeam mumbaiIndians;
     mumbaiIndians.addCricketer("Rohit", "Sharma", 36.25);
     mumbaiIndians.addCricketer("Suryakumar", "Yadav", 32.75);
@@ -75,6 +75,8 @@ int main(int argc, const char * argv[]) {
     mumbaiIndians.addCricketer("", "", 21.0);
     mumbaiIndians.addCricketer("Cameron", "Green", 24.0);
     mumbaiIndians.printCricket();
+ 
+ 
     assert(mumbaiIndians.rosteredOnCricketTeam ("", ""));
     mumbaiIndians.releaseCricketer("Jasprit", "Bumrah");
     assert(mumbaiIndians.cricketerCount() == 4
@@ -83,7 +85,7 @@ int main(int argc, const char * argv[]) {
     && mumbaiIndians.rosteredOnCricketTeam ("Cameron", "Green")
     && mumbaiIndians.rosteredOnCricketTeam ("", ""));
 
- */
+//*/
     
     
     
