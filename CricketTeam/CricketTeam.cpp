@@ -20,9 +20,9 @@ CricketTeam::CricketTeam() {
 
 
 
-//copy constructor
+//copy constructor  will implment a deep copy, means copy every node value into a current team
 CricketTeam::CricketTeam(const CricketTeam & rhs) {
-    Node *p, *prev, *np, *nprev;
+    Node *p, *np, *nprev = nullptr;
     p = rhs.head;
     np = new Node;
 
@@ -30,15 +30,20 @@ CricketTeam::CricketTeam(const CricketTeam & rhs) {
     while ( p != nullptr){
         if (p == rhs.head){
             head = np;
+            nprev = head;
+            
         }
+
         np->firstName = p->firstName;
         np->lastName = p->lastName;
         np->number = p->number;
-        np->next = p->next;
-        np->prev = p->prev;
+        np->next = nullptr;
+        np->prev = nprev;
         np = new Node;
-        p = p-> next;
+        p = p-> next;  // p move forward in rhs
+        nprev->next = np;  //nprev move forward in copied team(current or this)
     }
+    tail = np;
 }
 
 //denstructor
@@ -75,7 +80,7 @@ int CricketTeam::cricketerCount(){
 bool CricketTeam::addCricketer(string firstName, string lastName, CricketType value){
     Node *p,*temp=nullptr, *np;
     int compareLast=0, compareFirst=0;
-
+    
     p = head;
     temp = p; //Save previous pointer as temp
     
@@ -85,18 +90,19 @@ bool CricketTeam::addCricketer(string firstName, string lastName, CricketType va
         np->lastName = lastName;
         np->number = value;
         np->next = nullptr;
+        np->prev = nullptr;
         head = np;
         tail = np;
-
+        
         return true;
-
+        
     }
-
     
-    while (p != nullptr){
-         //cout << "we had \n";
-         //this->printCricket();
-         //cout << lastName<< "   input   " << firstName <<"\n";
+    
+    while (p != nullptr){  //start to match by Lastname, then Firstname
+        //cerr << "we had \n";
+        //this->printCricket();
+        //cerr << lastName<< "   input   " << firstName <<"\n";
         
         
         
@@ -106,8 +112,8 @@ bool CricketTeam::addCricketer(string firstName, string lastName, CricketType va
         
         if (compareLast < 0){ //Move ahead by lastname
             if (p != tail){  //loop until tail
-                temp = p;  //remember the previous node to temp for every p move ahead
-                if (p != tail) p = p->next;  //make sure next pointer move safe, if p is tail, do not move
+                temp = p;  //remember the previous node to temp before every p move ahead
+                p = p->next;  //make sure next pointer move safe, if p is tail, do not move
                 continue;
             }
         }
@@ -117,107 +123,118 @@ bool CricketTeam::addCricketer(string firstName, string lastName, CricketType va
             return false;
         }
         
-        if(compareLast == 0 and compareFirst < 0){ // move ahead by firstname
-            temp = p;
-            if (p != tail) p = p->next;  //make sure next pointer move safe, if p is tail, do not move
+        if(compareLast == 0 and compareFirst < 0){ // Find Lastname then move ahead by firstname
+            if (p != tail){  //loop until tail
+                temp = p;  //remember the previous node to temp before every p move ahead
+                p = p->next;  //make sure next pointer move safe, if p is tail, do not move
+                continue;
+            }
+            
+            else if(compareLast == 0 and compareFirst > 0){ // Find Lastname and reach the 1st greater Firstname, need to add ahead p
+                if (p==head){ //head will use different add method, add np as new head
+                    np = new Node;
+                    np->firstName = firstName;
+                    np->lastName = lastName;
+                    np->number = value;
+                    np->next = p;
+                    np->prev = nullptr;  //head's prev is null
+                    p->prev = np;
+                    head = np;   //point new head to np
+                    
+                    return true;
+                    
+                }
+                else{  // this will be same Lastname, and compareFirst <0, add ahead p, no need to update tail
+                    np = new Node;
+                    np->firstName = firstName;
+                    np->lastName = lastName;
+                    np->number = value;
+                    np->next = p;
+                    np->prev = temp;  //remeber we use temp to point previous of p
+                    temp->next = np;
+                    p->prev = np;  //p->next will stay the same as before
+                    
+                    return true;
+                }
+            }
         }
-        
-        else if(compareLast == 0 and compareFirst > 0){ //
-            if (p==head){ //head will use different add method, add np as new head
-                np = new Node;
-                np->firstName = firstName;
-                np->lastName = lastName;
-                np->number = value;
-                np->next = p;
-                head = np;
+            
+            //reach tail or firstname is just before p, add node ahead p
+            
+            if (compareLast >=0 and compareFirst >= 0){  //reach the right position, add np before p
+                if (p==head){ // handle p = head, add new node np as head
+                    np = new Node;
+                    np->firstName = firstName;
+                    np->lastName = lastName;
+                    np->number = value;
+                    np->next = p;
+                    np->prev = nullptr;  //head's prev is null
+                    p->prev = np;
+                    head = np;   //point new head to np
+                    
+                }
+                else{  //add np before p, but np is not a head
+                    np = new Node;
+                    np->firstName = firstName;
+                    np->lastName = lastName;
+                    np->number = value;
+                    temp->next = np;   //temp is previous p, add np between temp and p
+                    np->next = p;
+                    np->prev = temp;
+                    p->prev = np;
+                    
+                    
+                }
+                return true;
                 
-                return true;
-
             }
-            else{  // add ahead p, no need to update tail
-                np = new Node;
-                np->firstName = firstName;
-                np->lastName = lastName;
-                np->number = value;
-                np->next = p;
-                temp->next = np;
+            
+            
+            if (compareLast <0){  //lastname just pass p order, add np after p
+                if (p == tail){  //check tail and make new tail as np
+                    np = new Node;
+                    np->firstName = firstName;
+                    np->lastName = lastName;
+                    np->number = value;
+                    np->next = nullptr;
+                    np->prev = p;
+                    p->next = np;  //p->prev stay as same
+                    tail = np;
+                    
+                    return true;
+                }
                 
-                return true;
-
-
             }
-            
-        
+            else{  //just reach next lastname p, add np before p
+                if (p == head){
+                    np = new Node;
+                    np->firstName = firstName;
+                    np->lastName = lastName;
+                    np->number = value;
+                    np->next = p;
+                    np->prev = nullptr;
+                    p->prev = np;
+                    head = np; //need to update head now
+                    return true;
+                    
+                }
+                else{ //add as a normal node ahead p
+                    np = new Node;
+                    np->firstName = firstName;
+                    np->lastName = lastName;
+                    np->number = value;
+                    np->next = p;
+                    np->prev = temp;
+                    temp->next = np;
+                    
+                    return true;
+                }
+            }
         }
-        
-        //reach tail or firstname is just before p, add node ahead p
-        
-        if (compareLast >=0 and compareFirst >= 0){  //add before here
-            if (p==head){ // add as head
-                np = new Node;
-                np->firstName = firstName;
-                np->lastName = lastName;
-                np->number = value;
-                np->next = p;
-                head = np;  //update new head as np
-
-            }
-            else{  //add np before p
-                np = new Node;
-                np->firstName = firstName;
-                np->lastName = lastName;
-                np->number = value;
-                np->next = p;
-                temp->next = np;
-
-            }
-            return true;
-            
-        }
-        
-        
-        if (compareLast <0){  //lastname just pass p order, add np after p
-            if (p == tail){  //check tail and make new tail as np
-                np = new Node;
-                np->firstName = firstName;
-                np->lastName = lastName;
-                np->number = value;
-                np->next = nullptr;
-                p->next = np;
-                tail = np;
-                
-                return true;
-            }
-            
-        }
-        else{  //just reach lastname p order, add np before p
-            if (p == head){
-                np = new Node;
-                np->firstName = firstName;
-                np->lastName = lastName;
-                np->number = value;
-                np->next = p;
-               // temp->next = np;
-                head = np; //need to update head now
-                return true;
-
-            }
-            else{
-                np = new Node;
-                np->firstName = firstName;
-                np->lastName = lastName;
-                np->number = value;
-                np->next = p;
-                temp->next = np;
-                return true;
-            }
-            
-        }
-        
-    }
-
     return false;
+
 }
+
 
 
 void CricketTeam::printCricket(){
