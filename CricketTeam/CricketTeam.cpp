@@ -88,12 +88,12 @@ CricketTeam::~CricketTeam() {
 }
 
 
-bool CricketTeam::noTeam(){
+bool CricketTeam::noTeam() const{
     if (head == nullptr) return true;
     else return false;
 }
 
-int CricketTeam::cricketerCount(){
+int CricketTeam::cricketerCount() const{
     Node *p;
     int numOfNodes = 0;
     p = head;
@@ -277,7 +277,7 @@ void CricketTeam::printCricket(){
     Node *p;
     p=head;
     while (p != nullptr){
-        cout << p->lastName<<"aaa "<< p->firstName << "  "<<p->number <<"  \n";
+        cout << p->lastName<<" "<< p->firstName << "  "<<p->number <<"  \n";
         p = p->next;
     }
 }
@@ -367,6 +367,7 @@ bool CricketTeam::rosteredOnCricketTeam(const std::string& firstName, const std:
     while (p != nullptr){
         if ((p->lastName+p->firstName) == lastName+firstName){
             return true;
+           // cout << "find name->"<<lastName+firstName<<"\n";
         }
         p = p->next;
     }
@@ -455,10 +456,16 @@ void CricketTeam::tradeCricketTeams(CricketTeam& other){
     }
 }
 
-bool mergeCricketers(const CricketTeam & odOne,const CricketTeam & odTwo,CricketTeam & odJoined){
-    cout << "Non-member function\n";
-    return true;
-}
+/*
+ If a full name appears in exactly one of odOne and odTwo, then odJoined must contain an element consisting of that full name and its corresponding value.
+ If a full name appears in both odOne and odTwo, with the same corresponding value in both, then odJoined must contain an element with that full name and value.
+ When this function returns, odJoined must contain no elements other than those required by these rules. (You must not assume odJoined is empty when it is passed in to this function; it might not be.)
+ If there exists a full name that appears in both odOne and odTwo, but with different corresponding values, then this function returns false; if there is no full name like this, the function returns true. Even if the function returns false, result must be constituted as defined by the above rules.
+ */
+
+
+
+
 
 void checkCricketers (const std::string& fsearch,const std::string& lsearch,const CricketTeam& odOne,CricketTeam& odResult){
     cout <<"Non-member func \n";

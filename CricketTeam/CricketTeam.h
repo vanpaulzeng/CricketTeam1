@@ -40,9 +40,9 @@ CricketTeam& operator=(const CricketTeam& rhs);
 
     
     
-bool noTeam(); // Return true if the CricketTeam list is empty, otherwise false.
+bool noTeam() const; // Return true if the CricketTeam list is empty, otherwise false.
 
-int cricketerCount(); // Return the number of matches on the CricketTeam list.
+int cricketerCount() const; // Return the number of matches on the CricketTeam list.
     
 bool addCricketer(std::string firstName, std::string lastName, CricketType value);
 // If the full name (both the first and last name) is not equal
@@ -90,12 +90,36 @@ void tradeCricketTeams(CricketTeam& other);
     void printCricket();
     // print list
 
+// Non-member function virtual define
+//bool& mergeCricketers(const CricketTeam & odOne,const CricketTeam & odTwo,CricketTeam & odJoined);
+
 };
 
 // Non-member function
-bool mergeCricketers(const CricketTeam & odOne,const CricketTeam & odTwo,CricketTeam & odJoined);
+//bool mergeCricketers(const CricketTeam & odOne,const CricketTeam & odTwo,CricketTeam & odJoined);
 
-void checkCricketers (const std::string& fsearch,const std::string& lsearch,const CricketTeam& odOne,CricketTeam& odResult);
+//void checkCricketers (const std::string& fsearch,const std::string& lsearch,const CricketTeam& odOne,CricketTeam& odResult);
+
+bool mergeCricketers(const CricketTeam & odOne,const CricketTeam & odTwo,CricketTeam & odJoined){
+
+    int i, j;
+    
+    std::string firstName, lastName;
+    CricketType value;
+    
+    // use checkTeamForCricker to get member
+    
+    
+    for (i = 1; i <= odOne.cricketerCount(); i++){
+        if (odOne.checkTeamForCricketer(i, firstName, lastName, value) == true){
+            odJoined.addCricketer(firstName, lastName, value);
+        }
+    }
+    return true;
+}
+
+
+
 
 
 #endif /* CricketTeam_h */
