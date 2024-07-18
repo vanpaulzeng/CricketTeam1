@@ -36,7 +36,7 @@ CricketTeam(const CricketTeam& rhs);
 ~CricketTeam();
     
 // assignment operator
-const CricketTeam& operator=(const CricketTeam& rhs);
+CricketTeam& operator=(const CricketTeam& rhs);
 
     
     
@@ -92,9 +92,10 @@ void tradeCricketTeams(CricketTeam& other);
 
 };
 
+// Non-member function
+bool mergeCricketers(const CricketTeam & odOne,const CricketTeam & odTwo,CricketTeam & odJoined);
 
-
-
+void checkCricketers (const std::string& fsearch,const std::string& lsearch,const CricketTeam& odOne,CricketTeam& odResult);
 
 
 #endif /* CricketTeam_h */

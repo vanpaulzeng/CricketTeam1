@@ -46,6 +46,42 @@ CricketTeam::CricketTeam(const CricketTeam & rhs) {
     tail = np;
 }
 
+
+//copy constructor  will implment a deep copy, means copy every node value into a current team
+/*/ copy constructor
+LinkedList::LinkedList(const LinkedList& rhs)
+{
+    if (rhs.head == nullptr) head = nullptr;
+    else {
+        head = new Node;
+        head->value = rhs.head->value;
+        Node *q = head;
+        Node *p = rhs.head->next;
+        while (p != nullptr) {
+            q->next = new Node;
+            q->next->value = p->value;
+            q->next->next = nullptr;
+            p = p->next;
+            q = q->next;
+        }
+    }
+}
+*/
+
+
+CricketTeam& CricketTeam::operator=(const CricketTeam & rhs){
+        if (this == &rhs) return *this;
+
+        Node* temp = rhs.head;
+        //rhs.head = head;
+        head = temp;
+        
+        return *this;
+}
+
+
+
+
 //denstructor
 CricketTeam::~CricketTeam() {
     //do nothing;
@@ -387,18 +423,45 @@ bool CricketTeam::checkTeamForCricketer(int i, std::string& firstName, std::stri
 // Exchange the contents of this list with the other one.
 
 void CricketTeam::tradeCricketTeams(CricketTeam& other){
-    Node *p, *pOther;
+    Node *p, *prev=nullptr,  *pOther;
     pOther = other.head;
     p = head;
     while (pOther != nullptr){
         p->firstName = pOther->firstName;
         p->lastName = pOther->lastName;
         p->number = pOther->number;
-        
+        if (p != tail){
+            //Since the prev and next links do does not change, no need to update
+            prev = p;       //remember the previous p node which can be used as tail after loop
+            p = p->next;  //move forward by pOther sequence til end
+            pOther = pOther->next;
+            
+        }
+        else { //Need more nodes
+            p = new Node;
+            prev->next = p;
+            p->prev = prev;
+            p->next = nullptr;
+            tail = p;
+        }
+    }  // current list is longer than other, need recycle left nodes
+    tail = prev;  // make new tail
+    tail->next = nullptr;
+    
+    while (p != nullptr){
+        prev = p;
         p = p->next;
-        pOther = pOther->next;
+        delete prev;  //delete the left nodes to prevent memory leak
     }
+}
 
+bool mergeCricketers(const CricketTeam & odOne,const CricketTeam & odTwo,CricketTeam & odJoined){
+    cout << "Non-member function\n";
+    return true;
+}
+
+void checkCricketers (const std::string& fsearch,const std::string& lsearch,const CricketTeam& odOne,CricketTeam& odResult){
+    cout <<"Non-member func \n";
 }
 
 

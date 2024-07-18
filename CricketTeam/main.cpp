@@ -66,7 +66,7 @@ int main(int argc, const char * argv[]) {
 */
     
     
-//* test 2 passed
+/* test 2 passed
     CricketTeam mumbaiIndians;
     mumbaiIndians.addCricketer("Rohit", "Sharma", 36.25);
     mumbaiIndians.addCricketer("Suryakumar", "Yadav", 32.75);
@@ -85,8 +85,27 @@ int main(int argc, const char * argv[]) {
     && mumbaiIndians.rosteredOnCricketTeam ("Cameron", "Green")
     && mumbaiIndians.rosteredOnCricketTeam ("", ""));
 
-//*/
+*/
     
+    
+
+    
+    
+ /*   // Test 3  passed
+    CricketTeam mumbaiIndians;
+    mumbaiIndians.addCricketer("Rohit", "Sharma", 36.25);
+    mumbaiIndians.addCricketer("Suryakumar", "Yadav", 32.75);
+    assert(!mumbaiIndians.rosteredOnCricketTeam ("",""));
+    mumbaiIndians.addCricketer("Jasprit", "Bumrah", 29.5);
+    mumbaiIndians.addCricketer("", "", 21.0);
+    mumbaiIndians.addCricketer("Cameron", "Green", 24.0);
+    assert(mumbaiIndians.rosteredOnCricketTeam ("", ""));
+    mumbaiIndians.releaseCricketer("Jasprit", "Bumrah");
+    assert(mumbaiIndians.cricketerCount() == 4 && mumbaiIndians.rosteredOnCricketTeam("Rohit", "Sharma") && mumbaiIndians.rosteredOnCricketTeam ("Suryakumar", "Yadav") && mumbaiIndians.rosteredOnCricketTeam ("Cameron","Green")
+           && mumbaiIndians.rosteredOnCricketTeam ("", ""));
+    
+*/
+  
     
     
 
