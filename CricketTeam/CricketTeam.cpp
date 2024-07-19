@@ -36,7 +36,7 @@ CricketTeam::CricketTeam(const CricketTeam & rhs) {
 
         np->firstName = p->firstName;
         np->lastName = p->lastName;
-        np->number = p->number;
+        np->value = p->value;
         np->next = nullptr;
         np->prev = nprev;
         np = new Node;
@@ -124,7 +124,7 @@ bool CricketTeam::addCricketer(string firstName, string lastName, CricketType va
         np = new Node;
         np->firstName = firstName;
         np->lastName = lastName;
-        np->number = value;
+        np->value = value;
         np->next = nullptr;
         np->prev = nullptr;
         head = np;
@@ -171,7 +171,7 @@ bool CricketTeam::addCricketer(string firstName, string lastName, CricketType va
                     np = new Node;
                     np->firstName = firstName;
                     np->lastName = lastName;
-                    np->number = value;
+                    np->value = value;
                     np->next = p;
                     np->prev = nullptr;  //head's prev is null
                     p->prev = np;
@@ -184,7 +184,7 @@ bool CricketTeam::addCricketer(string firstName, string lastName, CricketType va
                     np = new Node;
                     np->firstName = firstName;
                     np->lastName = lastName;
-                    np->number = value;
+                    np->value = value;
                     np->next = p;
                     np->prev = temp;  //remeber we use temp to point previous of p
                     temp->next = np;
@@ -202,7 +202,7 @@ bool CricketTeam::addCricketer(string firstName, string lastName, CricketType va
                     np = new Node;
                     np->firstName = firstName;
                     np->lastName = lastName;
-                    np->number = value;
+                    np->value = value;
                     np->next = p;
                     np->prev = nullptr;  //head's prev is null
                     p->prev = np;
@@ -213,7 +213,7 @@ bool CricketTeam::addCricketer(string firstName, string lastName, CricketType va
                     np = new Node;
                     np->firstName = firstName;
                     np->lastName = lastName;
-                    np->number = value;
+                    np->value = value;
                     temp->next = np;   //temp is previous p, add np between temp and p
                     np->next = p;
                     np->prev = temp;
@@ -231,7 +231,7 @@ bool CricketTeam::addCricketer(string firstName, string lastName, CricketType va
                     np = new Node;
                     np->firstName = firstName;
                     np->lastName = lastName;
-                    np->number = value;
+                    np->value = value;
                     np->next = nullptr;
                     np->prev = p;
                     p->next = np;  //p->prev stay as same
@@ -246,7 +246,7 @@ bool CricketTeam::addCricketer(string firstName, string lastName, CricketType va
                     np = new Node;
                     np->firstName = firstName;
                     np->lastName = lastName;
-                    np->number = value;
+                    np->value = value;
                     np->next = p;
                     np->prev = nullptr;
                     p->prev = np;
@@ -258,7 +258,7 @@ bool CricketTeam::addCricketer(string firstName, string lastName, CricketType va
                     np = new Node;
                     np->firstName = firstName;
                     np->lastName = lastName;
-                    np->number = value;
+                    np->value = value;
                     np->next = p;
                     np->prev = temp;
                     temp->next = np;
@@ -277,7 +277,7 @@ void CricketTeam::printCricket(){
     Node *p;
     p=head;
     while (p != nullptr){
-        cout << p->lastName<<" "<< p->firstName << "  "<<p->number <<"  \n";
+        cout << p->lastName<<" "<< p->firstName << "  "<<p->value <<"  \n";
         p = p->next;
     }
 }
@@ -293,7 +293,7 @@ bool CricketTeam::substituteCricketer(const std::string &firstName, const std::s
     p=head;
     while (p != nullptr){
         if ((p->lastName+p->firstName) == lastName+firstName){
-            p->number = value;
+            p->value = value;
             return true;
         }
         p = p->next;
@@ -316,7 +316,7 @@ bool CricketTeam::addOrSubstitute(const std::string& firstName, const std::strin
     p=head;
     while (p != nullptr){
         if ((p->lastName+p->firstName) == lastName+firstName){
-            p->number = value;
+            p->value = value;
             return true;
         }
         p = p->next;
@@ -386,7 +386,7 @@ bool CricketTeam::searchForCricketer(const std::string& firstName, const std::st
     p=head;
     while (p != nullptr){
         if ((p->lastName+p->firstName) == lastName+firstName){
-            p->number = value;
+            value = p->value;
             return true;
         }
         p = p->next;
@@ -410,7 +410,7 @@ bool CricketTeam::checkTeamForCricketer(int i, std::string& firstName, std::stri
         if ( i == nodeSeq){
             firstName = p->firstName;
             lastName = p->lastName;
-            value = p->number;
+            value = p->value;
         }
         nodeSeq ++;
         
@@ -430,7 +430,7 @@ void CricketTeam::tradeCricketTeams(CricketTeam& other){
     while (pOther != nullptr){
         p->firstName = pOther->firstName;
         p->lastName = pOther->lastName;
-        p->number = pOther->number;
+        p->value = pOther->value;
         if (p != tail){
             //Since the prev and next links do does not change, no need to update
             prev = p;       //remember the previous p node which can be used as tail after loop
@@ -456,20 +456,11 @@ void CricketTeam::tradeCricketTeams(CricketTeam& other){
     }
 }
 
-/*
- If a full name appears in exactly one of odOne and odTwo, then odJoined must contain an element consisting of that full name and its corresponding value.
- If a full name appears in both odOne and odTwo, with the same corresponding value in both, then odJoined must contain an element with that full name and value.
- When this function returns, odJoined must contain no elements other than those required by these rules. (You must not assume odJoined is empty when it is passed in to this function; it might not be.)
- If there exists a full name that appears in both odOne and odTwo, but with different corresponding values, then this function returns false; if there is no full name like this, the function returns true. Even if the function returns false, result must be constituted as defined by the above rules.
- */
 
 
-
-
-
-void checkCricketers (const std::string& fsearch,const std::string& lsearch,const CricketTeam& odOne,CricketTeam& odResult){
-    cout <<"Non-member func \n";
-}
+//void checkCricketers (const std::string& fsearch,const std::string& lsearch,const CricketTeam& odOne,CricketTeam& odResult){
+//    cout <<"Non-member func \n";
+//
 
 
 
