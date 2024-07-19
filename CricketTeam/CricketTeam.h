@@ -170,7 +170,7 @@ static void checkCricketers (const std::string& fsearch,const std::string& lsear
         
         
         
-        if (lPos > 0){ //need compare last by *
+        if (lPos >= 0 || firstName == fsearch){ //need compare last by *
             for (j = 0; j < lPos; j++){  //loop inside lastName by char
                 if ( lastName[j] == lsearch[j] ){ //Find lastncontinueame match members and add into odResult
                     match = true;
@@ -184,13 +184,13 @@ static void checkCricketers (const std::string& fsearch,const std::string& lsear
             
         }  // End if *  in lastname
         
-        if (match == true) {
+        if (match == true or firstName == fsearch ) {
             odResult.addCricketer(firstName, lastName, value);
             match = false;
             continue;  //if lastname already match, record add in, skip to next member
         }  // End if match for lastname
         
-        if (fPos > 0 and match == false){ //need compare last by *
+        if ( (fPos >= 0 or lastName == lsearch ) and match == false){ //need compare last by *
             for (j = 0; j < fPos; j++){  //loop inside firstName by char
                 if ( firstName[j] == fsearch[j] ){ //Find lastncontinueame match members and add into odResult
                     match = true;
@@ -204,7 +204,7 @@ static void checkCricketers (const std::string& fsearch,const std::string& lsear
             
         }  // End if *  in firstname
         
-        if (match == true) {
+        if (match == true || lastName == lsearch) {
             odResult.addCricketer(firstName, lastName, value);
             match = false;
             continue;  //if firstname already match, record add in, skip to next member

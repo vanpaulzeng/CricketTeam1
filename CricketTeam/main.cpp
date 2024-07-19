@@ -143,9 +143,9 @@ int main(int argc, const char * argv[])
     rajasthanRoyals1.addCricketer ("Trent", "Boult", 18 );
     rajasthanRoyals1.addCricketer ("Trim", "David", 8 );
     
-    rajasthanRoyals1.addCricketer ("Rashid", "Khbn", 19);
+    rajasthanRoyals1.addCricketer ("Rashid", "Khbn", 18);
     rajasthanRoyals1.addCricketer ("Rashid", "Khab", 19);
-    rajasthanRoyals1.addCricketer ("Rashid", "Khac", 19);
+    rajasthanRoyals1.addCricketer ("Rashid", "Khac", 17);
     
     
     
@@ -162,7 +162,7 @@ int main(int argc, const char * argv[])
     //delete odJoined;
     CricketTeam odResult;
     
-    checkCricketers("Tr*","*",rajasthanRoyals1,odResult);
+    checkCricketers("T*","*",rajasthanRoyals1,odResult);
     odResult.printCricket();
     
     
