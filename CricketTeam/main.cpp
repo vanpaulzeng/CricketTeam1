@@ -107,7 +107,7 @@ int main(int argc, const char * argv[]) {
 */
     
     
-    // Merge own test case
+    /*/ Paul's Merge own test case
         CricketTeam rajasthanRoyals1;
         rajasthanRoyals1.addCricketer("Ravichandran", "Ashwin", 99);
         rajasthanRoyals1.addCricketer ("Sanju", "Samson", 11);
@@ -135,10 +135,24 @@ int main(int argc, const char * argv[]) {
     
     mergeCricketers(rajasthanRoyals1, rajasthanRoyals2, odJoined);
     odJoined.printCricket();
+*/
+    
+    //* Edwin's test case
+    CricketTeam rajasthanRoyals1, rajasthanRoyals2;
+    rajasthanRoyals1.addCricketer ("Trent", "Boult", 18 );
+    rajasthanRoyals1.addCricketer ("Tim", "David", 8 );
 
-  
+    rajasthanRoyals1.addCricketer ("Rashid", "Khan", 19);
+    rajasthanRoyals2.addCricketer ("Trent", "Boult", 18);
+
+    rajasthanRoyals2.addCricketer ("Tim", "Southee", 38);
+    rajasthanRoyals2.addCricketer ("Kane" ,"Williamson", 22);
+
+    CricketTeam odJoined;
     
-    
+    mergeCricketers(rajasthanRoyals1, rajasthanRoyals2, odJoined);
+    odJoined.printCricket();
+
 
 
 

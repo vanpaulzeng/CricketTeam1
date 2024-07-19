@@ -155,7 +155,7 @@ bool CricketTeam::addCricketer(string firstName, string lastName, CricketType va
         }
         
         if(compareLast == 0 and compareFirst == 0){
-            cout << " The name: " << firstName <<" "<<lastName <<" already in the list!\n";
+            //cout << " The name: " << firstName <<" "<<lastName <<" already in the list!\n";
             return false;
         }
         
