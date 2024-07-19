@@ -138,70 +138,85 @@ static bool mergeCricketers(const CricketTeam & odOne,const CricketTeam & odTwo,
 /*
  When this function returns, odResult must contain a copy of all the elements in odOne that match the search terms; it must not contain any other elements. You can wildcard the first name, last name or both by supplying "*". (You must not assume result is empty when it is passed in to this function; it may not be.)
  */
-static void checkCricketers (const std::string& fsearch,const std::string& lsearch,const CricketTeam& odOne,CricketTeam& odResult){
-
+static void checkCricketers (const std::string& fsearch,const std::string& lsearch,const CricketTeam& odOne,CricketTeam& odResult)
+{
+    
     int i, j , fPos = 0, lPos = 0;   // i for odOne loop, j for first or last name char loop
     //bool testResult;
     bool match = false;
     std::string firstName, lastName;
     CricketType value;
-    
+ 
     // use checkTeamForCricker to get member
     
     
-    for (i = 0; i < odOne.cricketerCount(); i++){  // loop from odOne
+    for (i = 0; i < odOne.cricketerCount(); i++){  // loop from odOne members
         odOne.checkTeamForCricketer(i, firstName, lastName, value);
- 
+        
         fPos = fsearch.find("*");
         lPos = lsearch.find("*");
-        std::cout << "firstName  find * at \n"<<fPos << "  "<<lPos  ;
-
+        //std::cout << "firstName  find * at \n"<<fPos << "  "<<lPos  ;
+        
+        
+        if (fsearch == "*" and lsearch == "*"){  // lPos and fPos both equal 0
+            odResult.addCricketer(firstName, lastName, value);
+            continue; //full name match, add in result and skip to next member
+        }
+        
         if (firstName == fsearch and lastName == lsearch){
             odResult.addCricketer(firstName, lastName, value);
-            break; //full name match, add in result and skip to next member
+            continue; //full name match, add in result and skip to next member
         }
-
         
-
         
-        if ( (fPos >=0 ) or (lPos >= 0) ) { //find * in firname or lastname
-            if (fPos >= 0 and lPos >= 0){ //need compare first and last by *
-                for (j = 0; j < lastName.length(); j++){  //loop inside lastName by char
-                    if ( lastName[j] == lsearch[j] and j <=lPos ){ //Find lastncontinueame match members and add into odResult
-                        match = true;
-                        continue;
-                    }
-                    else{
-                        match = false;
-                        break;
-                    }
-                        
-                }  // End for loop for lastname
-                if (match == true) {
-                    odResult.addCricketer(firstName, lastName, value);
-                    break;  //if lastname already match, record already add in, skip to next member
+        
+        if (lPos > 0){ //need compare last by *
+            for (j = 0; j < lPos; j++){  //loop inside lastName by char
+                if ( lastName[j] == lsearch[j] ){ //Find lastncontinueame match members and add into odResult
+                    match = true;
+                    continue;
                 }
-                //for loop for firstname
-                for (j = 0; j < lastName.length(); j++){  //loop inside lastName by char
-                    if ( firstName[j] == fsearch[j] and j <=fPos ){ //Find firstname match members and add into odResult
-                        match = true;
-                        continue;
-                    }
-                    else{
-                        match = false;
-                        break;
-                    }
-                        
-                }  // End for loop for firstname
-                if (match == true) {
-                    odResult.addCricketer(firstName, lastName, value);
-                    break;  //if lastname does not match, add record in, skip to next member
-                }
+                else{
+                    match = false;
+                } // End if last name compare
+                break;  // found lastname match *
+            }  //endif lastname[j] compare
+            
+        }  // End if *  in lastname
         
-    }  //end of members loop
+        if (match == true) {
+            odResult.addCricketer(firstName, lastName, value);
+            match = false;
+            continue;  //if lastname already match, record add in, skip to next member
+        }  // End if match for lastname
+        
+        if (fPos > 0 and match == false){ //need compare last by *
+            for (j = 0; j < fPos; j++){  //loop inside firstName by char
+                if ( firstName[j] == fsearch[j] ){ //Find lastncontinueame match members and add into odResult
+                    match = true;
+                    continue;
+                }
+                else{
+                    match = false;
+                } // End if first name compare
+                break;  // found firstname match *
+            }  //endif firstname[j] compare
+            
+        }  // End if *  in firstname
+        
+        if (match == true) {
+            odResult.addCricketer(firstName, lastName, value);
+            match = false;
+            continue;  //if firstname already match, record add in, skip to next member
+        }  // End if match for firstname
+        
+        
+        
+        
+    }  //end of member loop
+    
+} // end of func
 
-     
-}
 
 
 

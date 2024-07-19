@@ -141,10 +141,13 @@ int main(int argc, const char * argv[])
     //* Edwin's test case
     CricketTeam rajasthanRoyals1, rajasthanRoyals2;
     rajasthanRoyals1.addCricketer ("Trent", "Boult", 18 );
-    rajasthanRoyals1.addCricketer ("Tim", "David", 8 );
+    rajasthanRoyals1.addCricketer ("Trim", "David", 8 );
     
-    rajasthanRoyals1.addCricketer ("Rashid", "Khan", 19);
+    rajasthanRoyals1.addCricketer ("Rashid", "Khbn", 19);
     rajasthanRoyals1.addCricketer ("Rashid", "Khab", 19);
+    rajasthanRoyals1.addCricketer ("Rashid", "Khac", 19);
+    
+    
     
     rajasthanRoyals2.addCricketer ("Trent", "Boult", 18);
     
@@ -154,12 +157,12 @@ int main(int argc, const char * argv[])
     CricketTeam odJoined;
     
     mergeCricketers(rajasthanRoyals1, rajasthanRoyals2, odJoined);
-    odJoined.printCricket();
+    //odJoined.printCricket();
     
     //delete odJoined;
     CricketTeam odResult;
     
-    checkCricketers("Rashid","Khan",rajasthanRoyals1,odResult);
+    checkCricketers("Tr*","*",rajasthanRoyals1,odResult);
     odResult.printCricket();
     
     
