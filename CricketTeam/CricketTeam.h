@@ -1,9 +1,3 @@
-//
-//  CricketTeam.h
-//  CricketTeam
-//
-//  Created by Admin on 2024-07-10.
-//
 
 #ifndef CricketTeam_h
 #define CricketTeam_h

@@ -1,9 +1,3 @@
-//
-//  CricketTeam.cpp
-//  CricketTeam
-//
-//  Created by Admin on 2024-07-10.
-//
 
 #include <stdio.h>
 #include <string>
