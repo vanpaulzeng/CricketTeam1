@@ -107,7 +107,7 @@ public:
 static bool mergeCricketers(const CricketTeam & odOne,const CricketTeam & odTwo,CricketTeam & odJoined){
 
     int i;
-    //bool testResult;
+    bool testResult = true;
     
     std::string firstName, lastName;
     CricketType value, team2Value;
@@ -125,14 +125,16 @@ static bool mergeCricketers(const CricketTeam & odOne,const CricketTeam & odTwo,
     for (i = 0; i < odTwo.cricketerCount(); i++){  // need to check if member already in joined team also check value with tempValue, if different value then need to return false
         odTwo.checkTeamForCricketer(i, firstName, lastName, team2Value);
         
-        if (odJoined.searchForCricketer(firstName, lastName, value) == true and value!= team2Value)
-            return false;
+        if (odJoined.searchForCricketer(firstName, lastName, value) == true and value!= team2Value){
+            testResult = false;
+            odJoined.releaseCricketer(firstName, lastName);
+        }
         else
             //different name so add team 2 members into joined
             odJoined.addCricketer(firstName, lastName, team2Value);
     }
-
-    return true;
+    //std::cout << testResult;
+    return testResult;
 }
 
 /*

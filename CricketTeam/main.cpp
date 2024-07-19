@@ -138,32 +138,82 @@ int main(int argc, const char * argv[])
      odJoined.printCricket();
      */
     
-    //* Edwin's test case
-    CricketTeam rajasthanRoyals1, rajasthanRoyals2;
-    rajasthanRoyals1.addCricketer ("Trent", "Boult", 18 );
-    rajasthanRoyals1.addCricketer ("Trim", "David", 8 );
     
-    rajasthanRoyals1.addCricketer ("Rashid", "Khbn", 18);
-    rajasthanRoyals1.addCricketer ("Rashid", "Khab", 19);
-    rajasthanRoyals1.addCricketer ("Rashid", "Khac", 17);
+    /* Edwin's merge test case 1 passed
+    CricketTeam rajasthanRoyals1, rajasthanRoyals2, rajasthanRoyals3;
     
+     
     
+    rajasthanRoyals1.addCricketer ("Trent", "Boult" ,18);
+    rajasthanRoyals1.addCricketer ("Tim", "David", 8);
+    rajasthanRoyals1.addCricketer ( "Rashid", "Khan" ,19);
     
-    rajasthanRoyals2.addCricketer ("Trent", "Boult", 18);
-    
-    rajasthanRoyals2.addCricketer ("Tim", "Southee", 38);
+    rajasthanRoyals2.addCricketer ("Trent", "Boult", 18 );
+    rajasthanRoyals2.addCricketer ( "Tim", "Southee" ,38);
     rajasthanRoyals2.addCricketer ("Kane" ,"Williamson", 22);
     
     CricketTeam odJoined;
     
     mergeCricketers(rajasthanRoyals1, rajasthanRoyals2, odJoined);
-    //odJoined.printCricket();
+    odJoined.printCricket();
     
-    //delete odJoined;
-    CricketTeam odResult;
+     */
     
-    checkCricketers("T*","*",rajasthanRoyals1,odResult);
+    
+    /* Edwin's merge test case 2 passed
+
+    rajasthanRoyals1.addCricketer ("Quinton", "DeCock" ,12);
+    rajasthanRoyals1.addCricketer ("Faf", "DuPlessis" ,17);
+    rajasthanRoyals1.addCricketer ("Kagiso", "Rabada", 25);
+
+    rajasthanRoyals2.addCricketer ("Faf", "DuPlessis", 13);
+    rajasthanRoyals2.addCricketer ("Virat", "Kohli" ,18);
+    
+    CricketTeam odJoined;
+    
+    mergeCricketers(rajasthanRoyals1, rajasthanRoyals2, odJoined);
+    odJoined.printCricket();
+     
+     */
+     
+     
+     /*/* Edwin's check test case 1, passed
+      CricketTeam rajasthanRoyals1, rajasthanRoyals2;
+      
+      rajasthanRoyals1.addCricketer ( "Rahul", "Dravid", 15);
+      rajasthanRoyals1.addCricketer ("David", "Miller", 13);
+      rajasthanRoyals1.addCricketer ( "Rahul", "Tewatia", 9 );
+      rajasthanRoyals1.addCricketer ("David", "Wiese", 96);
+     
+     
+      CricketTeam odResult;
+    
+    checkCricketers("David","*",rajasthanRoyals1,odResult);
     odResult.printCricket();
+    */
+    
+    
+    
+    // Edwin's check test 2  passed
+    CricketTeam rajasthanRoyals3;
+    CricketTeam odResult2;
+    
+    rajasthanRoyals3.addCricketer ( "Darren", "Bravo", 46);
+    rajasthanRoyals3.addCricketer ("Dwayne", "Bravo", 47);
+    rajasthanRoyals3.addCricketer ( "Kieron", "Pollard", 55 );
+    rajasthanRoyals3.addCricketer ( "Nicolas", "Pooran", 29);
+   
+   
+   
+  
+  checkCricketers("*","*",rajasthanRoyals3,odResult2);
+  odResult2.printCricket();
+  
+     
+    
+
+    
+    
     
     
     // return 0;
