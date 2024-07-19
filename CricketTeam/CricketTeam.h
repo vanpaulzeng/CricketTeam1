@@ -7,6 +7,7 @@
 //typedef std::int32_t CricketType; // This can change to other types such as double and int, not just string
 typedef std::int32_t CricketType; // This can change to other types such as double and int, not just string
 
+/*
 struct Node {
     std::string firstName;
     std::string lastName;
@@ -14,12 +15,22 @@ struct Node {
     Node *next;
     Node *prev;
 };
+ */
 
 
 class CricketTeam
 {
 private:
+    struct Node {
+        std::string firstName;
+        std::string lastName;
+        CricketType value;
+        Node *next;
+        Node *prev;
+    };
+
     Node *head , *tail;
+    
     
     
 public:
