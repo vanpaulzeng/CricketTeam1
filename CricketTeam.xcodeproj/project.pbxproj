@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8471E2472C4A4B060066D8E6 /* BackupMain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8471E2462C4A4B060066D8E6 /* BackupMain.cpp */; };
 		847D71BF2C3F826B0027F6FB /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 847D71BE2C3F826B0027F6FB /* main.cpp */; };
 		847D71CA2C3FC25C0027F6FB /* CricketTeam.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 847D71C62C3F82DF0027F6FB /* CricketTeam.cpp */; };
 /* End PBXBuildFile section */
@@ -24,6 +25,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		8471E2462C4A4B060066D8E6 /* BackupMain.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = BackupMain.cpp; sourceTree = "<group>"; };
 		847D71BB2C3F826B0027F6FB /* CricketTeam */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = CricketTeam; sourceTree = BUILT_PRODUCTS_DIR; };
 		847D71BE2C3F826B0027F6FB /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		847D71C52C3F82860027F6FB /* CricketTeam.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CricketTeam.h; sourceTree = "<group>"; };
@@ -62,6 +64,7 @@
 			isa = PBXGroup;
 			children = (
 				847D71BE2C3F826B0027F6FB /* main.cpp */,
+				8471E2462C4A4B060066D8E6 /* BackupMain.cpp */,
 				847D71C52C3F82860027F6FB /* CricketTeam.h */,
 				847D71C62C3F82DF0027F6FB /* CricketTeam.cpp */,
 				847D71C92C3F847C0027F6FB /* report.txt */,
@@ -128,6 +131,7 @@
 			files = (
 				847D71CA2C3FC25C0027F6FB /* CricketTeam.cpp in Sources */,
 				847D71BF2C3F826B0027F6FB /* main.cpp in Sources */,
+				8471E2472C4A4B060066D8E6 /* BackupMain.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
