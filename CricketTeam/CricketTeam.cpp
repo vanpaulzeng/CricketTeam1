@@ -47,44 +47,25 @@ CricketTeam::CricketTeam(const CricketTeam & rhs) {
 }
 
 
-//copy constructor  will implment a deep copy, means copy every node value into a current team
-/*/ copy constructor
-LinkedList::LinkedList(const LinkedList& rhs)
+//Assigement will implment
+// const LinkedList& LinkedList::operator=(const LinkedList& rhs)
+const CricketTeam& CricketTeam::operator=(const CricketTeam& rhs)
 {
-    if (rhs.head == nullptr) head = nullptr;
-    else {
-        head = new Node;
-        head->value = rhs.head->value;
-        Node *q = head;
-        Node *p = rhs.head->next;
-        while (p != nullptr) {
-            q->next = new Node;
-            q->next->value = p->value;
-            q->next->next = nullptr;
-            p = p->next;
-            q = q->next;
-        }
-    }
+    if (this == &rhs) return *this;
+    CricketTeam temp = rhs;
+    tradeCricketTeams(temp);
+    return *this;
 }
-*/
-
-
-CricketTeam& CricketTeam::operator=(const CricketTeam & rhs){
-        if (this == &rhs) return *this;
-
-        Node* temp = rhs.head;
-        //rhs.head = head;
-        head = temp;
-        
-        return *this;
-}
-
-
 
 
 //denstructor
 CricketTeam::~CricketTeam() {
-    //do nothing;
+    Node *p;
+    while (head != nullptr) {
+        p = head;
+        head = head->next;
+        delete p;
+    }
 }
 
 
@@ -411,6 +392,7 @@ bool CricketTeam::checkTeamForCricketer(int i, std::string& firstName, std::stri
             firstName = p->firstName;
             lastName = p->lastName;
             value = p->value;
+            return true;
         }
         nodeSeq ++;
         

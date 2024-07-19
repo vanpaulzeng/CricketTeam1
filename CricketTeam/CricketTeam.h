@@ -8,7 +8,9 @@
 #ifndef CricketTeam_h
 #define CricketTeam_h
 
+#include <string>
 
+//typedef std::int32_t CricketType; // This can change to other types such as double and int, not just string
 typedef std::int32_t CricketType; // This can change to other types such as double and int, not just string
 
 struct Node {
@@ -36,7 +38,7 @@ public:
     ~CricketTeam();
     
     // assignment operator
-    CricketTeam& operator=(const CricketTeam& rhs);
+    const CricketTeam& operator=(const CricketTeam& rhs);
     
     
     
